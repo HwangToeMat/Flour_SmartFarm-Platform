@@ -1,0 +1,35 @@
+- Total
+['frtstGrupp', 'flanGrupp', 'frtstCo', 'frmhsFclu', 'hvstGrupp',        'grwtLt', 'fcluHg', 'lefLt', 'hvstCo', 'frmWeek', 'lefCunt', 'lefBt', 'stemThck']
+EC : StackedEnsemble_AllModels_AutoML_EC // mse = 0.042
+PH : XGBoost_grid__1_AutoML_PH // mse = 0.027
+cunt : StackedEnsemble_AllModels_AutoML_cunt // mse : 50.70
+otmsuplyqy : StackedEnsemble_BestOfFamily_AutoML_otmsuplyqy // mse : 357.45
+
+-Start
+['grwtLt','lefLt', 'frmWeek', 'lefCunt', 'lefBt', 'stemThck']
+EC : GBM_3_AutoML_st_EC // mse = 0.420
+PH : GBM_1_AutoML_st_PH // mse = 0.057
+cunt : GBM_grid__1_AutoML_st_cunt // mse = 120.42
+otmsuplyqy : GBM_1_AutoML_st_oymsupplyqy // mse = 1077.64
+
+-Flower
+['flanGrupp', 'frmhsFclu', 'fcluHg', 'grwtLt','lefLt', 'frmWeek', 'lefCunt', 'lefBt', 'stemThck']
+EC : XGBoost_grid__1_AutoML_flw_EC // mse = 0.017
+PH : GBM_grid__1_AutoML_flw_PH // mse = 0.026
+cunt : StackedEnsemble_AllModels_AutoML_flw_cunt // mse = 31.38
+otmsuplyqy : StackedEnsemble_AllModels_AutoML_flw_otmsuplyqy  // mse = 175.38
+
+
+-Fruit
+['frtstGrupp', 'frtstCo', 'fcluHg', 'grwtLt','lefLt', 'frmWeek', 'lefCunt', 'lefBt', 'stemThck']
+EC : XGBoost_grid__1_AutoML_fru_EC // mse = 0.017
+PH : DRF_1_AutoML_fru_PH // mse = 0.028
+cunt : StackedEnsemble_AllModels_AutoML_fru_cunt // mse = 35.31
+otmsuplyqy : StackedEnsemble_BestOfFamily_AutoML_fru_otmsuplyqy // mse = 118.36
+
+-Harvest
+['hvstGrupp', 'hvstCo', 'fcluHg', 'grwtLt','lefLt', 'frmWeek', 'lefCunt', 'lefBt', 'stemThck']
+EC : GBM_grid__1_AutoML_hvst_EC // mse = 0.015
+PH : GBM_4_AutoML_hvst_PH // mse = 0.018
+cunt : GBM_grid__1_AutoML_hvst_cunt // mse = 45.79
+otmsuplyqy : GBM_grid__1_AutoML_hvst_otmsuplyqy // mse = 57.81
