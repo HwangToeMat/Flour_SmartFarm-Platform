@@ -1,9 +1,7 @@
 package com.example.flour.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +12,8 @@ import java.util.List;
 @Data
 @Entity
 @ToString(exclude = {"engineer", "modelDetailList"})
+@Builder
+@Accessors(chain = true)
 public class Model {
 
     @Id
