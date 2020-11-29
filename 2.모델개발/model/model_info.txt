@@ -19,7 +19,6 @@ PH : GBM_grid__1_AutoML_flw_PH // mse = 0.026
 cunt : StackedEnsemble_AllModels_AutoML_flw_cunt // mse = 31.38
 otmsuplyqy : StackedEnsemble_AllModels_AutoML_flw_otmsuplyqy  // mse = 175.38
 
-
 -Fruit
 ['frtstGrupp', 'frtstCo', 'fcluHg', 'grwtLt','lefLt', 'frmWeek', 'lefCunt', 'lefBt', 'stemThck']
 EC : XGBoost_grid__1_AutoML_fru_EC // mse = 0.017
