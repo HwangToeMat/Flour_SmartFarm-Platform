@@ -1,0 +1,6 @@
+{
+  "python.linting.banditEnabled": false,
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": false,
+  "python.pythonPath": "todoapp/bin/python3.7"
+}
