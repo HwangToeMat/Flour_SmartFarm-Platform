@@ -13,7 +13,7 @@ def login():
     if form.validate_on_submit():
         session['userid'] = form.data.get('userid')
 
-        return redirect('/')
+        return redirect('http://192.168.1.10:3000')
 
     return render_template('login.html', form=form)
 
@@ -21,7 +21,7 @@ def login():
 @api.route('/logout', methods=['GET'])
 def logout():
     session.pop('userid', None)
-    return redirect('/')
+    return redirect('http://192.168.1.10:3000')
 
 @api.route('/session', methods=['GET'])
 def getSession():
@@ -40,7 +40,7 @@ def registerUser():
         db.session.add(user)
         db.session.commit()
 
-        return redirect('/')
+        return redirect('http://192.168.1.10:3000')
 
     return render_template('registerUser.html', form=form)
 
@@ -57,6 +57,6 @@ def registerEngineer():
         db.session.add(user)
         db.session.commit()
 
-        return redirect('/')
+        return redirect('http://192.168.1.10:3000')
 
     return render_template('registerEngineer.html', form=form)

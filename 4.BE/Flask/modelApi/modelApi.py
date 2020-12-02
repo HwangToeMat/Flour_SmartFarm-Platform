@@ -21,7 +21,7 @@ def registerModel():
         db.session.add(model)
         db.session.commit()
 
-        return redirect('/')
+        return redirect('http://192.168.1.10:3000/market')
 
     return render_template('registerModel.html', form=form)
 
