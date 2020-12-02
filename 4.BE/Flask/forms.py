@@ -11,6 +11,12 @@ class RegisterForm(FlaskForm):
         'repassword', message='Passwords must match')])
     repassword = PasswordField('repassword', validators=[DataRequired()])
 
+class RegisterModelForm(FlaskForm):
+    modelname = StringField('modelname', validators=[DataRequired()])
+    version = StringField('version', validators=[DataRequired()])
+    content = StringField('content', validators=[DataRequired()])
+    category = StringField('category', validators=[DataRequired()])
+    price = StringField('price', validators=[DataRequired()])
 
 class LoginForm(FlaskForm):
 

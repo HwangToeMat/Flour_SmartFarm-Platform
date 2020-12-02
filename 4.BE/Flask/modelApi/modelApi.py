@@ -1,58 +1,46 @@
 from flask import Flask
 from flask import request, redirect, render_template, session, Blueprint, jsonify
-from models import db, User, Engineer
-from forms import RegisterForm, LoginForm
+from models import db, User, Model_detail, Model
+from forms import RegisterModelForm
 import datetime
 import requests
-from . import api_m as api
+from . import api_model as api
 
-
-@api.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
+@api.route('/register/model', methods=['GET', 'POST'])
+def registerModel():
+    form = RegisterModelForm()
     if form.validate_on_submit():
-        session['userid'] = form.data.get('userid')
+        model = Model()
+        model.engineer_id = session['userid']
+        model.modelname  = form.data.get('modelname')
+        model.version  = form.data.get('version')
+        model.content  = form.data.get('content')
+        model.category  = form.data.get('category')
+        model.price   = form.data.get('price')
 
-        return redirect('/')
-
-    return render_template('login.html', form=form)
-
-
-@api.route('/logout', methods=['GET'])
-def logout():
-    session.pop('userid', None)
-    return redirect('/')
-
-
-@api.route('/register/user', methods=['GET', 'POST'])
-def registerUser():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        user = User()
-        user.userid = form.data.get('userid')
-        user.name = form.data.get('name')
-        user.password = form.data.get('password')
-
-        db.session.add(user)
+        db.session.add(model)
         db.session.commit()
 
         return redirect('/')
 
-    return render_template('registerUser.html', form=form)
+    return render_template('registerModel.html', form=form)
 
 
-@api.route('/register/engineer', methods=['GET', 'POST'])
-def registerEngineer():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        user = Engineer()
-        user.userid = form.data.get('userid')
-        user.name = form.data.get('name')
-        user.password = form.data.get('password')
-
-        db.session.add(user)
-        db.session.commit()
-
-        return redirect('/')
-
-    return render_template('registerEngineer.html', form=form)
+@api.route('/mymodel', methods=['POST'])
+def mymodel():
+    if request.method == 'POST':
+        model_detail = Model_detail()
+        data = request.get_json()
+        sess_id = data['userid']
+        user_info = db.session.query(User).filter(User.userid == sess_id).first()
+        if user_info != None:
+            ret = set()
+            userId = user_info.id
+            user_data = db.session.query(Model_detail).filter(Model_detail.user_id == userId).all()
+            for user_iter in user_data:
+                md_id = user_iter.model_id
+                ret.add(md_id)
+        else:
+            return jsonify(), 404
+        print(ret)
+        return jsonify(ret), 201

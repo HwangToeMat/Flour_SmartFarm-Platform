@@ -23,6 +23,10 @@ def logout():
     session.pop('userid', None)
     return redirect('/')
 
+@api.route('/session', methods=['GET'])
+def getSession():
+    sess = session['userid']
+    return jsonify(sess)
 
 @api.route('/register/user', methods=['GET', 'POST'])
 def registerUser():

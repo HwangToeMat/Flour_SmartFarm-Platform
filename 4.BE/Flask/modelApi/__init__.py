@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-api_m = Blueprint('api_m', __name__)
+api_model = Blueprint('api_model', __name__)
 
 from . import modelApi
