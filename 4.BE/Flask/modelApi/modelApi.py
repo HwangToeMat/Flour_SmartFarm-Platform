@@ -26,21 +26,25 @@ def registerModel():
     return render_template('registerModel.html', form=form)
 
 
-@api.route('/mymodel', methods=['POST'])
+@api.route('/mymodel', methods=['GET'])
 def mymodel():
-    if request.method == 'POST':
+    if request.method == 'GET':
         model_detail = Model_detail()
-        data = request.get_json()
-        sess_id = data['userid']
+        sess_id = request.args.get('userid', '')
         user_info = db.session.query(User).filter(User.userid == sess_id).first()
         if user_info != None:
+            model_json = []
             ret = set()
             userId = user_info.id
             user_data = db.session.query(Model_detail).filter(Model_detail.user_id == userId).all()
             for user_iter in user_data:
                 md_id = user_iter.model_id
                 ret.add(md_id)
+            ret_lst = list(ret)
+            for ret_iter in ret_lst:
+                model_iter = db.session.query(Model).filter(Model.id == ret_iter).first()
+                row = {'modelname' : model_iter.modelname, 'version' : model_iter.version, 'category' : model_iter.category}
+                model_json.append(row)
+            return jsonify(model_json), 201
         else:
             return jsonify(), 404
-        print(ret)
-        return jsonify(ret), 201
