@@ -9,6 +9,7 @@ from forms import RegisterForm, LoginForm
 from loginApi import api_l as loginApi
 from marketApi import api_m as marketApi
 from modelApi import api_model as modelApi
+import h2o
 
 app = Flask(__name__)
 migrate = Migrate(app, db)
@@ -58,4 +59,5 @@ db.create_all()
 
 if __name__ == '__main__':
     # manager.run()
+    h2o.init(ip="127.0.0.1", max_mem_size_GB = 200, nthreads = 10)
     app.run(host='0.0.0.0', port=5000, debug=True)

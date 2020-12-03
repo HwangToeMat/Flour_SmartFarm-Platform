@@ -5,6 +5,7 @@ from forms import RegisterModelForm
 import datetime
 import requests
 from . import api_model as api
+import h2o
 
 @api.route('/register/model', methods=['GET', 'POST'])
 def registerModel():
@@ -48,3 +49,15 @@ def mymodel():
             return jsonify(model_json), 201
         else:
             return jsonify(), 404
+
+@api.route('/h2omodel', methods=['GET'])
+def h2omodel():
+    if request.method == 'GET':
+        data = request.get_json()
+        model = h2o.load_model("./model/total/XGBoost_grid__1_AutoML_PH")
+        df = pd.read_csv("qy_grw.csv", index_col=0)
+        hf = h2o.H2OFrame(df.loc[])
+        pred = model.predict(hf)
+        result = df.to_json(orient="split")
+        parsed = json.loads(result)
+        json.dumps(parsed, indent=4)
