@@ -35,9 +35,6 @@ def check_db():
     for engine_iter in engine_data:
         ret += 'engineer : ' + str(engine_iter.id) + \
             ' -> ' + str(engine_iter.userid) + '    /   '
-    for md_iter in model_detail_data:
-        print('user_id : ', md_iter.user_id)
-        print('model_id : ', md_iter.model_id)
     return ret
     
 @manager.command
