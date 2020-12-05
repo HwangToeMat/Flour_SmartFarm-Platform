@@ -63,6 +63,8 @@ def h2omodel():
             model = h2o.load_model("./model/{}/{}".format(model_info.category,model_info.modelname))
 
             data = json.loads(inputData)
+            for key, value in data.items():
+                data[key] = [value]
             df = pd.DataFrame(data)
             hf = h2o.H2OFrame(df)
             pred = model.predict(hf)

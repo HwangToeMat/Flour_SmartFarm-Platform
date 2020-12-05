@@ -24,15 +24,6 @@ class Model_detail(db.Model):
     model = db.relationship(
         'Model', backref='model_detail', lazy=True)
 
-    # @property
-    # def serialize(self):
-    #     return {
-    #         'id': self.id,
-    #         'title': self.title,
-    #         'fcuser': self.fcuser.userid,
-    #         'tstamp': self.tstamp
-    #     }
-
 
 class Model(db.Model):
     __tablename__ = 'model'
